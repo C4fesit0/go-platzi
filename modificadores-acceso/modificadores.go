@@ -1,17 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	pk "go-platzi/modificadores-acceso/mypackage"
+)
 
+// pk es un alias para el paquete
 type car struct {
 	brand string
 	year  int
 }
 
 func main() {
-	myCar := car{brand: "Ford", year: 2020}
+	var myCar pk.CarPublic
+	myCar.Brand = "Ferrari"
+	myCar.Year = 2020
 	fmt.Println(myCar)
-
-	var otherCar car
-	otherCar.brand = "Ferrari"
-	fmt.Println(otherCar)
+	pk.PrintMessage("Hola :D")
+	pk.printMessage("Adios")
 }
