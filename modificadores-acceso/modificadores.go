@@ -17,5 +17,4 @@ func main() {
 	myCar.Year = 2020
 	fmt.Println(myCar)
 	pk.PrintMessage("Hola :D")
-	pk.printMessage("Adios")
 }
