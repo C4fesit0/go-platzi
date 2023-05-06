@@ -24,5 +24,4 @@ func main() {
 	}("Adios")
 
 	time.Sleep(time.Second * 1)
-
 }
