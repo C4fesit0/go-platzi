@@ -48,9 +48,13 @@ func main() {
 	lista := taskList{
 		tasks: []*task{t1, t2},
 	}
-	fmt.Println(lista.tasks[0])
 	lista.agregarALista(t3)
-	fmt.Println(len(lista.tasks))
-	lista.eliminarDeLista(1)
-	fmt.Println(len(lista.tasks))
+	for i := 0; i < len(lista.tasks); i++ {
+		fmt.Println("Index:", i, "nombre:", lista.tasks[i].nombre)
+	}
+
+	for index, tarea := range lista.tasks {
+		fmt.Println("Index:", index, "nombre:", tarea.nombre)
+	}
+
 }
