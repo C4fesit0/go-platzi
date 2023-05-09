@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type task struct {
 	nombre      string
@@ -32,6 +34,25 @@ func (t *taskList) eliminarDeLista(index int) {
 	t.tasks = append(t.tasks[:index], t.tasks[index+1:]...)
 }
 
+func (t *taskList) imprimirLista() {
+	for _, tarea := range t.tasks {
+		fmt.Println("--------------------------------")
+		fmt.Println("Nombre:", tarea.nombre)
+		fmt.Println("Descripcion:", tarea.descripcion)
+		fmt.Println("Completada:", tarea.completado)
+	}
+}
+
+func (t *taskList) imprimirListaCompletados() {
+	for _, tarea := range t.tasks {
+		if tarea.completado {
+			fmt.Println("Nombre:", tarea.nombre)
+			fmt.Println("Descripcion:", tarea.descripcion)
+			fmt.Println("Completada:", tarea.completado)
+		}
+	}
+}
+
 func main() {
 	t1 := &task{
 		nombre:      "Completar mi curso de go",
@@ -45,16 +66,37 @@ func main() {
 		nombre:      "Completar mi curso de NodeJS",
 		descripcion: "Completar mi curso de NodeJS de platzi en esta semana",
 	}
-	lista := taskList{
+	lista := &taskList{
 		tasks: []*task{t1, t2},
 	}
 	lista.agregarALista(t3)
-	for i := 0; i < len(lista.tasks); i++ {
-		fmt.Println("Index:", i, "nombre:", lista.tasks[i].nombre)
+	lista.imprimirLista()
+	lista.tasks[0].marcarCompleto()
+	fmt.Println("**Tareas Completadas")
+	lista.imprimirListaCompletados()
+
+	mapaTareas := make(map[string]*taskList)
+
+	mapaTareas["Alan"] = lista
+
+	t4 := &task{
+		nombre:      "Completar mi curso de Java",
+		descripcion: "Completar mi curso de Java de platzi en esta semana",
+	}
+	t5 := &task{
+		nombre:      "Completar mi curso de C#",
+		descripcion: "Completar mi curso de C# de platzi en esta semana",
 	}
 
-	for index, tarea := range lista.tasks {
-		fmt.Println("Index:", index, "nombre:", tarea.nombre)
+	lista2 := &taskList{
+		tasks: []*task{
+			t4, t5,
+		},
 	}
 
+	mapaTareas["Ricardo"] = lista2
+	fmt.Println("Tareas de Alan")
+	mapaTareas["Alan"].imprimirLista()
+	fmt.Println("Tareas de Ricardo")
+	mapaTareas["Ricardo"].imprimirLista()
 }
