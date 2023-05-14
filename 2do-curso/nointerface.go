@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type animal interface {
-	mover()
+	mover() string
 }
 
 type perro struct {
